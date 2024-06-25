@@ -1,4 +1,5 @@
 English or Portuguese translate
+Created by Arthur Cristovão
 
 # Welcome
 
