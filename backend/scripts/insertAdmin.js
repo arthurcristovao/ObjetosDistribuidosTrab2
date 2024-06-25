@@ -5,7 +5,7 @@ const createAdminUser = async () => {
     const nome = 'Admin';
     const telefone = '123456789';
     const email = 'admin@example.com';
-    const senha = 'admin123'; // Defina a senha desejada aqui
+    const senha = 'admin123'; 
     const isAdmin = true;
 
     const hashedPassword = await bcrypt.hash(senha, 10);

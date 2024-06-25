@@ -49,6 +49,6 @@ exports.login = async (req, res) => {
             return res.status(401).json({ message: 'Email ou senha incorretos' });
         }
         const token = jwt.sign({ id: user.id, isAdmin: user.isAdmin }, 'secret_key', { expiresIn: '1h' });
-        res.json({ token, isAdmin: user.isAdmin });
+        res.json({ token });
     });
 };

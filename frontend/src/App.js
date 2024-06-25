@@ -13,6 +13,7 @@ const App = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [loggedInEmail, setLoggedInEmail] = useState(''); // Estado para armazenar o email do usuário logado
 
     const fetchUsers = async () => {
         try {
@@ -37,6 +38,7 @@ const App = () => {
             setToken(`Bearer ${response.data.token}`);
             setIsAuthenticated(true);
             setIsAdmin(decodedToken.isAdmin); // Verificando se o usuário é administrador
+            setLoggedInEmail(email); // Guardando o email do usuário logado
         } catch (error) {
             console.error('Erro ao fazer login:', error);
         }
@@ -46,6 +48,8 @@ const App = () => {
         setToken(null);
         setIsAuthenticated(false);
         setIsAdmin(false);
+        setUserToEdit(null); // Resetar o estado do usuário em edição
+        setLoggedInEmail(''); // Resetar o email do usuário logado
     };
 
     return (
@@ -71,7 +75,10 @@ const App = () => {
                 </form>
             ) : (
                 <div className="user-management">
-                    <button className="logout-button" onClick={handleLogout}>Deslogar</button>
+                    <div className="header">
+                        <span>Olá, {loggedInEmail}</span>
+                        <button className="logout-button" onClick={handleLogout}>Deslogar</button>
+                    </div>
                     {isAdmin ? <UserForm userToEdit={userToEdit} fetchUsers={fetchUsers} token={token} /> : null}
                     <UserList users={users} fetchUsers={fetchUsers} setUserToEdit={setUserToEdit} token={token} isAdmin={isAdmin} />
                 </div>

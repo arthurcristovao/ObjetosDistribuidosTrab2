@@ -1,3 +1,5 @@
+// Arquivo: UserForm.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -44,43 +46,52 @@ const UserForm = ({ userToEdit, fetchUsers, token }) => {
     return (
         <form onSubmit={handleSubmit} className="user-form">
             <h2>{id ? 'Editar Usuário' : 'Criar Usuário'}</h2>
-            <input
-                type="text"
-                placeholder="Nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Telefone"
-                value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}
-                required
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-            />
-            <label>
-                Admin:
+            <div className="user-form-row">
                 <input
-                    type="checkbox"
-                    checked={isAdmin}
-                    onChange={(e) => setIsAdmin(e.target.checked)}
+                    type="text"
+                    placeholder="Nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    required
                 />
-            </label>
-            <button type="submit">{id ? 'Editar' : 'Criar'}</button>
+                <input
+                    type="text"
+                    placeholder="Telefone"
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="user-form-row">
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Senha"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="user-form">
+                <label>
+                    Admin:
+                    <input
+                        type="checkbox"
+                        checked={isAdmin}
+                        onChange={(e) => setIsAdmin(e.target.checked)}
+                    />
+                </label>
+            </div>
+            <div className="user-form-center">
+                <button type="submit" className="width60">{id ? 'Editar' : 'Criar'}</button>
+            </div>
+            <br></br>
         </form>
     );
 };
